@@ -256,6 +256,66 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);height:100vh;o
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 .live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+/* ── ECM ── */
+.ecm-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.ecm-topbar{background:#fff;border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0;flex-wrap:wrap}
+.ecm-title{font-family:var(--fh);font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
+.ecm-live{display:flex;align-items:center;gap:6px;padding:4px 10px;background:var(--green-l);border:1px solid rgba(16,185,129,.3);border-radius:20px;font-size:11.5px;font-weight:700;color:#065F46}
+.ecm-live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.5s ease-in-out infinite}
+.ecm-meta{font-size:12.5px;color:var(--slate);margin-left:2px}
+.ecm-time{font-family:var(--fm);font-size:13px;font-weight:600;color:var(--navy);background:var(--slate-l);padding:4px 10px;border-radius:8px;margin-left:auto}
+.ecm-filters{display:flex;gap:7px;align-items:center}
+
+.ecm-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border-bottom:2px solid var(--border);flex-shrink:0}
+.ecm-kpi{padding:16px 20px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--border);cursor:pointer;transition:background .15s;position:relative}
+.ecm-kpi:last-child{border-right:none}
+.ecm-kpi:hover{background:var(--slate-l)}
+.ecm-kpi.active-filter::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0}
+.ecm-kpi-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ecm-kpi-val{font-family:var(--fh);font-size:28px;font-weight:800;line-height:1;letter-spacing:-.5px}
+.ecm-kpi-label{font-size:11.5px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.ecm-kpi-sub{font-size:11px;color:var(--slate);margin-top:1px}
+.ecm-kpi.complete .ecm-kpi-ico{background:var(--green-l)}
+.ecm-kpi.complete .ecm-kpi-val{color:var(--green)}
+.ecm-kpi.complete.active-filter::after{background:var(--green)}
+.ecm-kpi.late .ecm-kpi-ico{background:var(--amber-l)}
+.ecm-kpi.late .ecm-kpi-val{color:var(--amber)}
+.ecm-kpi.late.active-filter::after{background:var(--amber)}
+.ecm-kpi.missed .ecm-kpi-ico{background:var(--red-l)}
+.ecm-kpi.missed .ecm-kpi-val{color:var(--red)}
+.ecm-kpi.missed.active-filter::after{background:var(--red)}
+
+.ecm-board{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;overflow:hidden;border-top:none}
+.ecm-col{display:flex;flex-direction:column;border-right:1px solid var(--border);overflow:hidden}
+.ecm-col:last-child{border-right:none}
+.ecm-col-hd{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ecm-col-title{font-family:var(--fh);font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+.ecm-col-count{font-family:var(--fm);font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px}
+.ecm-col-body{flex:1;overflow-y:auto;padding:10px 10px 16px}
+.ecm-col-body::-webkit-scrollbar{width:3px}
+.ecm-col-body::-webkit-scrollbar-thumb{background:var(--border)}
+
+.ecm-card{background:#fff;border-radius:12px;border:1.5px solid var(--border);margin-bottom:8px;overflow:hidden;transition:all .15s;cursor:pointer}
+.ecm-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08);transform:translateY(-1px)}
+.ecm-card.complete{border-left:3px solid var(--green)}
+.ecm-card.late{border-left:3px solid var(--amber);background:#FFFDF7}
+.ecm-card.missed{border-left:3px solid var(--red);background:#FFF8F8}
+.ecm-card.in-progress{border-left:3px solid var(--teal);background:var(--teal-l)}
+.ecm-card-hd{padding:10px 12px 8px;display:flex;align-items:flex-start;gap:9px}
+.ecm-card-av{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:11px;font-weight:700;color:#fff;flex-shrink:0}
+.ecm-card-client{font-family:var(--fh);font-size:13px;font-weight:700;color:var(--navy);line-height:1.2}
+.ecm-card-carer{font-size:11.5px;color:var(--slate);margin-top:2px}
+.ecm-card-status-row{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;border-top:1px solid var(--border);background:rgba(0,0,0,.015)}
+.ecm-time-display{font-family:var(--fm);font-size:11px;font-weight:600}
+.ecm-badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px}
+.ecm-card-detail{padding:0 12px 10px;display:flex;gap:10px;flex-wrap:wrap}
+.ecm-detail-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--slate)}
+
+.ecm-in-progress-banner{margin:0 10px 8px;padding:8px 12px;background:var(--teal-l);border:1px solid var(--teal-m);border-radius:10px;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--teal);font-weight:500;flex-shrink:0}
+
+.ecm-empty{text-align:center;padding:32px 16px;color:var(--slate)}
+.ecm-empty-ico{font-size:32px;margin-bottom:8px;opacity:.4}
+.ecm-empty-label{font-size:13px;font-weight:500;color:var(--slate)}
 </style>
 </head>
 <body>
@@ -687,15 +747,16 @@ const TemplatesView = ({ onGenerate }) => {
 // ── SIDEBAR ──────────────────────────────────────────────────────────────────
 const SB_ITEMS = [
   { items:[
-    { id:'day',        ico:'📅', label:'Day View',           active:true  },
-    { id:'week',       ico:'📆', label:'Week View'                        },
-    { id:'templates',  ico:'🔄', label:'SmartRota Templates'              },
-    { id:'rounds-b',   ico:'🔁', label:'Rounds Builder'                   },
-    { id:'unassigned', ico:'⚠️', label:'Unassigned Visits', badge:3, badgeColor:'red' },
+    { id:'day',        ico:'📅', label:'Day View',             active:true  },
+    { id:'ecm',        ico:'📡', label:'Call Monitoring',      badge:'live', badgeColor:'teal' },
+    { id:'week',       ico:'📆', label:'Week View'                          },
+    { id:'templates',  ico:'🔄', label:'SmartRota Templates'                },
+    { id:'rounds-b',   ico:'🔁', label:'Rounds Builder'                     },
+    { id:'unassigned', ico:'⚠️', label:'Unassigned Visits',   badge:3, badgeColor:'red' },
   ]},
   { label:'Configuration', items:[
-    { id:'rules',      ico:'⚙️', label:'Roster Rules'                     },
-    { id:'colours',    ico:'🎨', label:'Service Colours'                  },
+    { id:'rules',      ico:'⚙️', label:'Roster Rules'                       },
+    { id:'colours',    ico:'🎨', label:'Service Colours'                    },
   ]},
 ];
 
@@ -1633,6 +1694,262 @@ const ServiceColours = () => {
   );
 };
 
+// ── ECM DATA ──────────────────────────────────────────────────────────────────
+const ECM_CALLS = [
+  // COMPLETE
+  { id:'e1',  client:'Mrs G Williams',  carer:'Emma Williams',   carerColor:'#0D9488', svc:'Personal Care',  zone:'North',   sched:'07:30', schedEnd:'08:30', signIn:'07:28', signOut:'08:34', dur:66,  status:'complete',     keyCode:'1234' },
+  { id:'e2',  client:'Mr R Jones',      carer:'Emma Williams',   carerColor:'#0D9488', svc:'Domestic',       zone:'North',   sched:'07:00', schedEnd:'07:45', signIn:'06:58', signOut:'07:49', dur:51,  status:'complete',     keyCode:'3456' },
+  { id:'e3',  client:'Mrs P Davies',    carer:'Lisa Roberts',    carerColor:'#8B5CF6', svc:'Personal Care',  zone:'Central', sched:'08:00', schedEnd:'09:00', signIn:'08:03', signOut:'09:07', dur:64,  status:'complete',     keyCode:'7890' },
+  { id:'e4',  client:'Mr G Owen',       carer:'Lisa Roberts',    carerColor:'#8B5CF6', svc:'Social Support', zone:'Central', sched:'09:30', schedEnd:'10:15', signIn:'09:28', signOut:'10:18', dur:50,  status:'complete',     keyCode:'2345' },
+  { id:'e5',  client:'Mrs A Jones',     carer:'Rebecca Evans',   carerColor:'#3B82F6', svc:'Personal Care',  zone:'North',   sched:'07:00', schedEnd:'08:00', signIn:'07:02', signOut:'08:05', dur:63,  status:'complete',     keyCode:'6789' },
+  { id:'e6',  client:'Mr T Evans',      carer:'Rebecca Evans',   carerColor:'#3B82F6', svc:'Domestic',       zone:'North',   sched:'08:30', schedEnd:'09:15', signIn:'08:27', signOut:'09:19', dur:52,  status:'complete',     keyCode:'0123' },
+  { id:'e7',  client:'Miss B Rees',     carer:'Amy Hughes',      carerColor:'#EC4899', svc:'Personal Care',  zone:'South',   sched:'08:00', schedEnd:'09:00', signIn:'08:01', signOut:'09:02', dur:61,  status:'complete',     keyCode:'4567' },
+  // IN PROGRESS (part of complete column but with active indicator)
+  { id:'e8',  client:'Mr I Lloyd',      carer:'Emma Williams',   carerColor:'#0D9488', svc:'Medication',     zone:'North',   sched:'09:00', schedEnd:'09:45', signIn:'09:03', signOut:null,   dur:null,status:'in-progress',  keyCode:'5678' },
+  // LATE
+  { id:'e9',  client:'Mrs H Thomas',    carer:'Emma Williams',   carerColor:'#0D9488', svc:'Personal Care',  zone:'North',   sched:'10:30', schedEnd:'11:30', signIn:'10:48', signOut:null,   dur:null,status:'late',         lateBy:18, keyCode:'9012' },
+  { id:'e10', client:'Mrs M Roberts',   carer:'Lisa Roberts',    carerColor:'#8B5CF6', svc:'Personal Care',  zone:'Central', sched:'13:00', schedEnd:'14:00', signIn:'13:22', signOut:null,   dur:null,status:'late',         lateBy:22, keyCode:'1357' },
+  { id:'e11', client:'Mr A Hughes',     carer:'Lisa Roberts',    carerColor:'#8B5CF6', svc:'Medication',     zone:'Central', sched:'14:30', schedEnd:'15:15', signIn:null,    signOut:null,   dur:null,status:'late',         lateBy:35, keyCode:'2468' },
+  { id:'e12', client:'Mr D Parry',      carer:'Rebecca Evans',   carerColor:'#3B82F6', svc:'Medication',     zone:'North',   sched:'09:00', schedEnd:'09:45', signIn:'09:19', signOut:null,   dur:null,status:'late',         lateBy:19, keyCode:'8024' },
+  // MISSED
+  { id:'e13', client:'Mr D Evans',      carer:'Sion Parry',      carerColor:'#F59E0B', svc:'Domestic',       zone:'South',   sched:'09:30', schedEnd:'10:00', signIn:null,    signOut:null,   dur:null,status:'missed',       missReason:'Carer absent — no cover arranged', keyCode:'3690' },
+  { id:'e14', client:'Mrs N Williams',  carer:'Sion Parry',      carerColor:'#F59E0B', svc:'Personal Care',  zone:'South',   sched:'10:30', schedEnd:'11:30', signIn:null,    signOut:null,   dur:null,status:'missed',       missReason:'Carer absent — cover declined', keyCode:'1470' },
+  { id:'e15', client:'Mrs J Morris',    carer:'Catrin Owen',     carerColor:'#64748B', svc:'Personal Care',  zone:'Central', sched:'08:00', schedEnd:'09:00', signIn:null,    signOut:null,   dur:null,status:'missed',       missReason:'Client hospitalised — not updated on system', keyCode:'2581' },
+];
+
+
+const avColor = n => { const cols=['#0D9488','#3B82F6','#8B5CF6','#EC4899','#F59E0B']; return cols[n.charCodeAt(0)%cols.length]; };
+const inits2  = n => n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+// ── ECM COMPONENT ─────────────────────────────────────────────────────────────
+const ECMPage = () => {
+  const [filter, setFilter]   = useState('all');
+  const [selId,  setSelId]    = useState(null);
+  const [clock,  setClock]    = useState(new Date());
+
+  React.useEffect(() => {
+    const t = setInterval(() => setClock(new Date()), 30000);
+    return () => clearInterval(t);
+  }, []);
+
+  const timeStr = `${String(clock.getHours()).padStart(2,'0')}:${String(clock.getMinutes()).padStart(2,'0')}`;
+
+  const complete    = ECM_CALLS.filter(c => c.status==='complete' || c.status==='in-progress');
+  const inProgress  = ECM_CALLS.filter(c => c.status==='in-progress');
+  const late        = ECM_CALLS.filter(c => c.status==='late');
+  const missed      = ECM_CALLS.filter(c => c.status==='missed');
+
+  const cols = [
+    { id:'complete', label:'Calls Complete', count:complete.length, color:'var(--green)', bgColor:'var(--green-l)', ico:'✓', calls:complete },
+    { id:'late',     label:'Late / Running', count:late.length,     color:'var(--amber)', bgColor:'var(--amber-l)', ico:'⏱', calls:late     },
+    { id:'missed',   label:'Missed',         count:missed.length,   color:'var(--red)',   bgColor:'var(--red-l)',   ico:'!', calls:missed   },
+  ];
+
+  const EcmCard = ({ call }) => {
+    const isSelected = selId === call.id;
+    const svcCol = SVC_COLORS[call.svc]||'#64748B';
+    const statusClass = call.status==='in-progress' ? 'in-progress' : call.status;
+
+    return (
+      <div className={`ecm-card ${statusClass}`} onClick={() => setSelId(s => s===call.id ? null : call.id)}>
+        <div className="ecm-card-hd">
+          <div className="ecm-card-av" style={{background:call.carerColor}}>{inits2(call.carer)}</div>
+          <div style={{flex:1,minWidth:0}}>
+            <div className="ecm-card-client">{call.client}</div>
+            <div className="ecm-card-carer">{call.carer} · {call.zone} Zone</div>
+          </div>
+          <div style={{textAlign:'right',flexShrink:0}}>
+            <div style={{fontFamily:'var(--fm)',fontSize:'12px',fontWeight:600,color:'var(--navy)'}}>{call.sched}</div>
+            <div style={{fontFamily:'var(--fm)',fontSize:'10px',color:'var(--slate)'}}>{call.schedEnd}</div>
+          </div>
+        </div>
+        <div className="ecm-card-detail">
+          <div className="ecm-detail-item">
+            <div style={{width:8,height:8,borderRadius:2,background:svcCol,flexShrink:0}}/>
+            {call.svc}
+          </div>
+          {call.signIn && (
+            <div className="ecm-detail-item">
+              🟢 In: <strong style={{fontFamily:'var(--fm)',marginLeft:2}}>{call.signIn}</strong>
+            </div>
+          )}
+          {call.signOut && (
+            <div className="ecm-detail-item">
+              🔴 Out: <strong style={{fontFamily:'var(--fm)',marginLeft:2}}>{call.signOut}</strong>
+            </div>
+          )}
+          {call.dur && (
+            <div className="ecm-detail-item">
+              ⏱ <strong style={{fontFamily:'var(--fm)',marginLeft:2}}>{call.dur}min</strong>
+            </div>
+          )}
+          {call.lateBy && (
+            <div className="ecm-detail-item" style={{color:'var(--amber)',fontWeight:600}}>
+              ⚠ {call.signIn ? `Started ${call.lateBy}min late` : `${call.lateBy}min overdue, not signed in`}
+            </div>
+          )}
+        </div>
+
+        {/* Expanded detail */}
+        {isSelected && (
+          <div style={{padding:'10px 12px',background:'var(--slate-l)',borderTop:'1px solid var(--border)'}}>
+            {[
+              ['Key safe',       call.keyCode],
+              ['Scheduled',      `${call.sched} – ${call.schedEnd}`],
+              ['Signed in',      call.signIn || '—'],
+              ['Signed out',     call.signOut || (call.status==='in-progress'?'In progress…':'Not yet')],
+              ['Duration',       call.dur ? `${call.dur} min` : '—'],
+              ...(call.missReason ? [['Reason', call.missReason]] : []),
+            ].map(([l,v]) => (
+              <div key={l} style={{display:'flex',justifyContent:'space-between',padding:'4px 0',borderBottom:'1px solid var(--border)',fontSize:'12px'}}>
+                <span style={{color:'var(--slate)',fontWeight:500}}>{l}</span>
+                <span style={{fontFamily:l==='Key safe'||l==='Signed in'||l==='Signed out'?'var(--fm)':undefined,color:'var(--navy)',fontWeight:500,textAlign:'right',maxWidth:180}}>{v}</span>
+              </div>
+            ))}
+            <div style={{display:'flex',gap:6,marginTop:10}}>
+              {call.status==='missed' && (
+                <button className="btn btn-g btn-sm" style={{flex:1,justifyContent:'center',fontSize:11.5}}>📞 Call carer</button>
+              )}
+              {(call.status==='late'||call.status==='missed') && (
+                <button className="btn btn-g btn-sm" style={{flex:1,justifyContent:'center',fontSize:11.5}}>🔁 Arrange cover</button>
+              )}
+              {call.status==='in-progress' && (
+                <button className="btn btn-g btn-sm" style={{flex:1,justifyContent:'center',fontSize:11.5}}>📞 Welfare check</button>
+              )}
+              <button className="btn btn-g btn-sm" style={{flex:1,justifyContent:'center',fontSize:11.5}}>📋 View client</button>
+            </div>
+          </div>
+        )}
+
+        <div className="ecm-card-status-row">
+          <div className="ecm-time-display" style={{color:
+            call.status==='complete'?'var(--green)':
+            call.status==='in-progress'?'var(--teal)':
+            call.status==='late'?'var(--amber)':'var(--red)'}}>
+            {call.status==='complete'   ? `✓ Done ${call.signOut}` :
+             call.status==='in-progress'? '● Active now' :
+             call.status==='late'       ? `⏱ ${call.lateBy}min late` :
+             '✕ Missed'}
+          </div>
+          <span className="ecm-badge" style={{
+            background:
+              call.status==='complete'?'var(--green-l)':
+              call.status==='in-progress'?'var(--teal-l)':
+              call.status==='late'?'var(--amber-l)':'var(--red-l)',
+            color:
+              call.status==='complete'?'#065F46':
+              call.status==='in-progress'?'var(--teal)':
+              call.status==='late'?'#92400E':'var(--red)',
+          }}>
+            {call.svc.split(' ')[0]}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="ecm-wrap">
+      {/* Top bar */}
+      <div className="ecm-topbar">
+        <div>
+          <div className="ecm-title">Call Monitoring</div>
+          <div className="ecm-meta">Today · {ECM_CALLS.length} calls scheduled · Aber Care North, Central, South</div>
+        </div>
+        <div className="ecm-live">
+          <div className="ecm-live-dot"/>
+          Live
+        </div>
+        <div className="ecm-time">{timeStr}</div>
+        <div className="ecm-filters" style={{marginLeft:8}}>
+          <select className="filter-sel" style={{fontSize:'12px',height:32}}>
+            <option>All zones</option>
+            <option>North</option>
+            <option>Central</option>
+            <option>South</option>
+          </select>
+          <select className="filter-sel" style={{fontSize:'12px',height:32}}>
+            <option>All carers</option>
+            <option>Emma Williams</option>
+            <option>Lisa Roberts</option>
+            <option>Rebecca Evans</option>
+            <option>Sion Parry</option>
+          </select>
+        </div>
+      </div>
+
+      {/* KPI strip */}
+      <div className="ecm-kpi-row">
+        {[
+          { id:'complete', cls:'complete', ico:'✓', label:'Calls Complete', val:complete.length, sub:`${inProgress.length} in progress now`, filt:'complete' },
+          { id:'late',     cls:'late',     ico:'⏱', label:'Late / Running', val:late.length,     sub:'Not yet signed in or overdue', filt:'late' },
+          { id:'missed',   cls:'missed',   ico:'✕', label:'Missed',         val:missed.length,   sub:'No sign-in recorded — action needed', filt:'missed' },
+        ].map(k => (
+          <div key={k.id} className={`ecm-kpi ${k.cls}${filter===k.filt?' active-filter':''}`}
+            onClick={() => setFilter(f => f===k.filt ? 'all' : k.filt)}>
+            <div className="ecm-kpi-ico" style={{fontSize:22}}>{k.ico}</div>
+            <div>
+              <div className="ecm-kpi-val">{k.val}</div>
+              <div className="ecm-kpi-label">{k.label}</div>
+              <div className="ecm-kpi-sub">{k.sub}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* In-progress banner */}
+      {inProgress.length > 0 && (
+        <div className="ecm-in-progress-banner">
+          <div className="live" style={{width:8,height:8}}/>
+          <span><strong>{inProgress.length} call{inProgress.length>1?'s':''} in progress:</strong> {inProgress.map(c=>c.carer.split(' ')[0]).join(', ')} · Signed in, visit ongoing</span>
+        </div>
+      )}
+
+      {/* Three-column board */}
+      <div className="ecm-board">
+        {cols.map(col => {
+          const visible = filter==='all' ? col.calls : filter===col.id ? col.calls : [];
+          const isFiltered = filter!=='all' && filter!==col.id;
+          return (
+            <div key={col.id} className="ecm-col">
+              <div className="ecm-col-hd">
+                <div className="ecm-col-title" style={{color:col.color}}>
+                  <span style={{width:22,height:22,borderRadius:7,background:col.bgColor,display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:800,flexShrink:0}}>
+                    {col.ico}
+                  </span>
+                  {col.label}
+                </div>
+                <span className="ecm-col-count" style={{background:col.bgColor,color:col.color}}>
+                  {col.count}
+                </span>
+              </div>
+              <div className="ecm-col-body">
+                {isFiltered ? (
+                  <div className="ecm-empty">
+                    <div className="ecm-empty-ico">🔍</div>
+                    <div className="ecm-empty-label">Filtered out</div>
+                  </div>
+                ) : visible.length === 0 ? (
+                  <div className="ecm-empty">
+                    <div className="ecm-empty-ico">
+                      {col.id==='complete'?'✓':col.id==='late'?'⏱':'✕'}
+                    </div>
+                    <div className="ecm-empty-label">
+                      {col.id==='missed' ? 'No missed calls ✓' : col.id==='late' ? 'All calls on time' : 'No completed calls yet'}
+                    </div>
+                  </div>
+                ) : (
+                  visible.map(call => <EcmCard key={call.id} call={call}/>)
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 // ── APP ────────────────────────────────────────────────────────────────────────
 const App = () => {
   const [activePage, setActivePage] = useState('day');
@@ -1659,6 +1976,7 @@ const App = () => {
         ? <Gantt activePage={activePage} setActivePage={setActivePage} />
         : (
           <PageWrap activePage={activePage} setActivePage={setActivePage}>
+            {activePage === 'ecm'        && <ECMPage />}
             {activePage === 'templates'  && <TemplatesView onGenerate={handleGenerate} />}
             {activePage === 'week'       && <WeekView />}
             {activePage === 'rounds-b'   && <RoundsBuilder />}
