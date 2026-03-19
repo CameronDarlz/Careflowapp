@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0D1F3C">
+<meta name="description" content="CareFlow — Care management software built for CQC and CIW regulated providers. Prototype demo.">
+<meta property="og:title" content="CareFlow — Care Management Platform">
+<meta property="og:description" content="A modern care management platform for UK domiciliary and residential care. Interactive prototype.">
+<title>CareFlow — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1F3C;--teal:#0D9488;--teal-l:#F0FDFA;--teal-m:#CCFBF1;
+  --slate:#64748B;--slate-l:#F1F5F9;--border:#E2E8F0;
+  --green:#10B981;--amber:#F59E0B;--purple:#8B5CF6;
+  --fh:'Outfit',sans-serif;--fb:'DM Sans',sans-serif;--fm:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--navy);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5}
+
+/* ── HERO ── */
+.hero{background:var(--navy);min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.orb1{width:600px;height:600px;background:var(--teal);opacity:.12;top:-200px;right:-100px}
+.orb2{width:500px;height:500px;background:#1e3a8a;opacity:.15;bottom:-100px;left:-100px}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+
+.hero-nav{display:flex;align-items:center;padding:20px 40px;gap:12px;position:relative;z-index:10;border-bottom:1px solid rgba(255,255,255,.06)}
+.logo-mark{width:34px;height:34px;border-radius:9px;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:18px;height:18px}
+.logo-name{font-family:var(--fh);font-size:19px;font-weight:800;color:#fff;letter-spacing:-.4px}
+.nav-pill{padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-size:11.5px;color:rgba(255,255,255,.5);font-weight:500;margin-left:4px}
+.hero-nav-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nav-link{font-size:13.5px;color:rgba(255,255,255,.5);font-weight:500;text-decoration:none;transition:color .15s}
+.nav-link:hover{color:#fff}
+
+.hero-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px 80px;text-align:center;position:relative;z-index:10}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(13,148,136,.2);border:1px solid rgba(13,148,136,.3);border-radius:20px;font-size:12.5px;font-weight:600;color:var(--teal);letter-spacing:.3px;margin-bottom:24px}
+.hero-title{font-family:var(--fh);font-size:clamp(36px,6vw,68px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.05;margin-bottom:20px;max-width:800px}
+.hero-title span{color:var(--teal)}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.55);max-width:560px;line-height:1.7;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
+.btn-hero{padding:14px 28px;border-radius:12px;font-family:var(--fh);font-size:15px;font-weight:700;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px;cursor:pointer;border:none}
+.btn-primary{background:var(--teal);color:#fff}
+.btn-primary:hover{background:#0a7d72;transform:translateY(-1px);box-shadow:0 8px 24px rgba(13,148,136,.35)}
+.btn-secondary{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.15)}
+.btn-secondary:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
+
+.reg-badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.reg-badge{display:flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:6px;font-size:11.5px;color:rgba(255,255,255,.4);font-weight:500}
+
+/* ── DEMO SECTION ── */
+.section{padding:72px 24px;max-width:1100px;margin:0 auto}
+.section-tag{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.section-title{font-family:var(--fh);font-size:clamp(26px,4vw,38px);font-weight:800;color:var(--navy);letter-spacing:-.03em;line-height:1.15;margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--slate);line-height:1.7;max-width:580px;margin-bottom:40px}
+
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.demo-card{background:#fff;border-radius:16px;border:1.5px solid var(--border);overflow:hidden;transition:all .2s;cursor:pointer;text-decoration:none;display:flex;flex-direction:column}
+.demo-card:hover{border-color:var(--teal);box-shadow:0 8px 32px rgba(13,148,136,.12);transform:translateY(-2px)}
+.demo-card-top{height:6px}
+.demo-card-body{padding:20px 20px 16px;flex:1}
+.demo-card-ico{font-size:28px;margin-bottom:12px;display:block}
+.demo-card-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.demo-card-desc{font-size:13.5px;color:var(--slate);line-height:1.55}
+.demo-card-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--slate-l)}
+.demo-card-tag{font-size:11.5px;font-weight:600;color:var(--slate)}
+.demo-card-link{font-size:12.5px;font-weight:700;color:var(--teal)}
+.demo-card-features{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.feature-chip{padding:2px 8px;background:var(--slate-l);border-radius:4px;font-size:11px;color:var(--slate);font-weight:500}
+
+/* ── CREDENTIALS ── */
+.cred-section{background:var(--navy);padding:60px 24px}
+.cred-inner{max-width:900px;margin:0 auto}
+.cred-title{font-family:var(--fh);font-size:28px;font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:6px}
+.cred-sub{font-size:14.5px;color:rgba(255,255,255,.5);margin-bottom:32px}
+.cred-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.cred-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 20px 16px}
+.cred-role{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.cred-name{font-family:var(--fh);font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.cred-org{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:14px}
+.cred-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-top:1px solid rgba(255,255,255,.06)}
+.cred-label{font-size:12px;color:rgba(255,255,255,.35);font-weight:500}
+.cred-val{font-family:var(--fm);font-size:12.5px;color:rgba(255,255,255,.75);font-weight:500}
+.cred-dest{display:flex;align-items:center;gap:6px;margin-top:12px;padding:8px 12px;background:rgba(13,148,136,.15);border-radius:8px;border:1px solid rgba(13,148,136,.2)}
+.cred-dest-ico{font-size:16px;flex-shrink:0}
+.cred-dest-text{font-size:12.5px;color:rgba(13,148,136,.9)}
+.cred-go{margin-top:12px;width:100%;padding:10px;border-radius:9px;background:var(--teal);color:#fff;font-family:var(--fh);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .15s;text-align:center;text-decoration:none;display:block}
+.cred-go:hover{background:#0a7d72}
+
+/* ── MODULES SECTION ── */
+.modules-section{background:var(--slate-l);padding:72px 24px}
+.modules-inner{max-width:1100px;margin:0 auto}
+.module-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.module-item{background:#fff;border-radius:12px;padding:16px 18px;border:1px solid var(--border);display:flex;gap:12px;align-items:flex-start;transition:all .15s}
+.module-item:hover{border-color:var(--teal);background:var(--teal-l)}
+.module-ico{font-size:22px;flex-shrink:0;margin-top:1px}
+.module-name{font-family:var(--fh);font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.module-desc{font-size:12px;color:var(--slate);line-height:1.45}
+.module-status{margin-top:6px;font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.status-live{color:var(--teal)}
+.status-spec{color:var(--slate)}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);padding:40px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+footer p{font-size:13px;color:rgba(255,255,255,.3);line-height:1.8}
+footer a{color:rgba(255,255,255,.4);text-decoration:none}
+footer a:hover{color:rgba(255,255,255,.7)}
+
+@keyframes fade-up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fade-up .5s ease forwards}
+
+@media(max-width:600px){
+  .hero-nav{padding:16px 20px}
+  .section{padding:48px 20px}
+  .demo-grid{grid-template-columns:1fr}
+  .cred-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-grid"></div>
+
+  <nav class="hero-nav">
+    <div class="logo-mark">
+      <svg viewBox="0 0 18 18" fill="none">
+        <rect x="1" y="1"  width="7" height="7" rx="2" fill="white" opacity=".9"/>
+        <rect x="10" y="1" width="7" height="7" rx="2" fill="white" opacity=".6"/>
+        <rect x="1" y="10" width="7" height="7" rx="2" fill="white" opacity=".6"/>
+        <rect x="10" y="10" width="7" height="7" rx="2" fill="white" opacity=".3"/>
+      </svg>
+    </div>
+    <span class="logo-name">CareFlow</span>
+    <span class="nav-pill">Prototype v1</span>
+    <div class="hero-nav-r">
+      <a href="#demo" class="nav-link">Modules</a>
+      <a href="#credentials" class="nav-link">Credentials</a>
+      <a href="CareFlow_Login.html" class="btn-hero btn-primary" style="padding:8px 18px;font-size:13px">Sign in →</a>
+    </div>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-tag">
+      <span>●</span> Interactive prototype — no login required to explore
+    </div>
+    <h1 class="hero-title">
+      Care management built for<br><span>CQC and CIW</span> providers
+    </h1>
+    <p class="hero-sub">
+      CareFlow is a full-stack domiciliary and residential care management platform. Rota, clients, compliance, finance, payroll, and mobile visit tools — in one system.
+    </p>
+    <div class="hero-actions">
+      <a href="CareFlow_Login.html" class="btn-hero btn-primary">Sign in to demo →</a>
+      <a href="CareFlow_Setup.html" class="btn-hero btn-secondary">Set up an organisation</a>
+      <a href="CareFlow_Mobile.html" class="btn-hero btn-secondary">📱 Mobile app</a>
+    </div>
+    <div class="reg-badges">
+      <div class="reg-badge"><span>🛡</span> CQC framework</div>
+      <div class="reg-badge"><span>🛡</span> CIW framework</div>
+      <div class="reg-badge"><span>🔒</span> ISO 27001</div>
+      <div class="reg-badge"><span>✓</span> Cyber Essentials Plus</div>
+      <div class="reg-badge"><span>📋</span> UK DPA 2018</div>
+      <div class="reg-badge"><span>♿</span> WCAG 2.1 AA</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMO MODULES -->
+<div id="demo">
+  <div class="section">
+    <div class="section-tag">Interactive prototype</div>
+    <h2 class="section-title">Everything in one platform</h2>
+    <p class="section-sub">Each module below is fully interactive. Click any card to open it, or sign in via the login screen for the full experience.</p>
+    <div class="demo-grid">
+
+      <a href="CareFlow_Login.html" class="demo-card">
+        <div class="demo-card-top" style="background:#0D1F3C"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">🔐</span>
+          <div class="demo-card-title">Login</div>
+          <div class="demo-card-desc">Role-based sign in. Coordinators route to the desktop platform, care workers to the mobile app. Use the demo credentials below.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">Role selector</span>
+            <span class="feature-chip">Auto-routing</span>
+            <span class="feature-chip">Organisation setup</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Entry point</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+      <a href="CareFlow_Prototype_v3.html" class="demo-card">
+        <div class="demo-card-top" style="background:#0D9488"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">🖥️</span>
+          <div class="demo-card-title">Coordinator Dashboard</div>
+          <div class="demo-card-desc">Personalised widget dashboard, staff module with profiles and compliance, and full messaging with live typing indicators.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">Dashboard widgets</span>
+            <span class="feature-chip">Staff profiles</span>
+            <span class="feature-chip">Messages</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Desktop · 3 modules</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+      <a href="CareFlow_Rostering.html" class="demo-card">
+        <div class="demo-card-top" style="background:#3B82F6"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">📅</span>
+          <div class="demo-card-title">Rostering</div>
+          <div class="demo-card-desc">Gantt day view with drag-and-drop shifts, three-way Staff/Client/Rounds toggle, SmartRota template builder, and roster rules engine.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">Gantt with drag</span>
+            <span class="feature-chip">Template builder</span>
+            <span class="feature-chip">7 sidebar views</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Desktop · 7 views</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+      <a href="CareFlow_Clients.html" class="demo-card">
+        <div class="demo-card-top" style="background:#8B5CF6"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">👤</span>
+          <div class="demo-card-title">Clients</div>
+          <div class="demo-card-desc">Full client list with 13-tab profiles including care plan, MAR chart, body maps, incidents, complaints, and documents.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">13-tab profiles</span>
+            <span class="feature-chip">MAR chart</span>
+            <span class="feature-chip">Body maps</span>
+            <span class="feature-chip">Incidents</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Desktop · 9 sidebar views</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+      <a href="CareFlow_Finance.html" class="demo-card">
+        <div class="demo-card-top" style="background:#10B981"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">💷</span>
+          <div class="demo-card-title">Finance</div>
+          <div class="demo-card-desc">Invoice review with live rate breakdowns, billing and pay rate sheets, payroll with holiday pay, credit notes, funder rate matrix, and revenue chart.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">Invoice line items</span>
+            <span class="feature-chip">Rate sheets</span>
+            <span class="feature-chip">Payroll + holiday pay</span>
+            <span class="feature-chip">Credit notes</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Desktop · 7 views</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+      <a href="CareFlow_Mobile.html" class="demo-card">
+        <div class="demo-card-top" style="background:#F59E0B"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">📱</span>
+          <div class="demo-card-title">Mobile App</div>
+          <div class="demo-card-desc">Care worker app with today's schedule, full visit flow (arrive → tasks → sign out), messaging, notifications, and staff portal with payslips and annual leave.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">Visit sign in/out</span>
+            <span class="feature-chip">MAR recording</span>
+            <span class="feature-chip">Staff portal</span>
+            <span class="feature-chip">Live timer</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Mobile · Best on phone</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+      <a href="CareFlow_Setup.html" class="demo-card">
+        <div class="demo-card-top" style="background:#EC4899"></div>
+        <div class="demo-card-body">
+          <span class="demo-card-ico">⚙️</span>
+          <div class="demo-card-title">Setup Wizard</div>
+          <div class="demo-card-desc">Eight-step onboarding flow for new organisations — org details, regulator, zones, services, rate sheets, roles, team invites, and go-live checklist.</div>
+          <div class="demo-card-features">
+            <span class="feature-chip">8 steps</span>
+            <span class="feature-chip">Rate matrix</span>
+            <span class="feature-chip">Team invites</span>
+            <span class="feature-chip">Go-live checklist</span>
+          </div>
+        </div>
+        <div class="demo-card-footer">
+          <span class="demo-card-tag">Onboarding flow</span>
+          <span class="demo-card-link">Open →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- CREDENTIALS -->
+<div id="credentials" class="cred-section">
+  <div class="cred-inner">
+    <div class="section-tag" style="color:var(--teal)">Demo credentials</div>
+    <div class="cred-title">Sign in as any role</div>
+    <div class="cred-sub" style="color:rgba(255,255,255,.45)">Use these credentials on the login screen. Each role routes to a different experience.</div>
+    <div class="cred-grid">
+
+      <div class="cred-card">
+        <div class="cred-role">Care Coordinator</div>
+        <div class="cred-name">Cameron D</div>
+        <div class="cred-org">Aber Care Services Ltd</div>
+        <div class="cred-row"><span class="cred-label">Email</span><span class="cred-val">cameron@abercare.co.uk</span></div>
+        <div class="cred-row"><span class="cred-label">Password</span><span class="cred-val">careflow2026</span></div>
+        <div class="cred-dest"><span class="cred-dest-ico">🖥️</span><span class="cred-dest-text">Routes to coordinator desktop dashboard</span></div>
+        <a href="CareFlow_Login.html" class="cred-go">Sign in as coordinator →</a>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-role">Senior Care Worker</div>
+        <div class="cred-name">Emma Williams</div>
+        <div class="cred-org">Aber Care Services Ltd · North Zone</div>
+        <div class="cred-row"><span class="cred-label">Email</span><span class="cred-val">emma@abercare.co.uk</span></div>
+        <div class="cred-row"><span class="cred-label">Password</span><span class="cred-val">careflow2026</span></div>
+        <div class="cred-dest"><span class="cred-dest-ico">📱</span><span class="cred-dest-text">Routes to care worker mobile app</span></div>
+        <a href="CareFlow_Login.html" class="cred-go">Sign in as care worker →</a>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-role">New organisation</div>
+        <div class="cred-name">Set up from scratch</div>
+        <div class="cred-org">No credentials needed</div>
+        <div style="height:14px"></div>
+        <div class="cred-row"><span class="cred-label">Flow</span><span class="cred-val">8-step wizard</span></div>
+        <div class="cred-row"><span class="cred-label">Duration</span><span class="cred-val">~5 minutes</span></div>
+        <div class="cred-dest"><span class="cred-dest-ico">⚙️</span><span class="cred-dest-text">Configure zones, services, rates, team</span></div>
+        <a href="CareFlow_Setup.html" class="cred-go">Start setup wizard →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODULES OVERVIEW -->
+<div class="modules-section">
+  <div class="modules-inner">
+    <div class="section-tag">Platform scope</div>
+    <h2 class="section-title" style="margin-bottom:8px">All 10 modules specified</h2>
+    <p style="font-size:15px;color:var(--slate);margin-bottom:32px;line-height:1.6">Full scope documents written and locked for all modules. The prototype covers the core operational screens.</p>
+    <div class="module-list">
+      <div class="module-item"><span class="module-ico">🏠</span><div><div class="module-name">Platform Shell</div><div class="module-desc">Navigation, roles, multi-tenancy, audit log</div><div class="module-status status-live">● In prototype</div></div></div>
+      <div class="module-item"><span class="module-ico">👤</span><div><div class="module-name">Clients</div><div class="module-desc">Profiles, care plans, incidents, MAR</div><div class="module-status status-live">● In prototype</div></div></div>
+      <div class="module-item"><span class="module-ico">👥</span><div><div class="module-name">Staff</div><div class="module-desc">Profiles, compliance, Bradford Factor</div><div class="module-status status-live">● In prototype</div></div></div>
+      <div class="module-item"><span class="module-ico">📅</span><div><div class="module-name">Rostering</div><div class="module-desc">Gantt, rounds, SmartRota templates</div><div class="module-status status-live">● In prototype</div></div></div>
+      <div class="module-item"><span class="module-ico">🏠</span><div><div class="module-name">Dashboard</div><div class="module-desc">Personalised widgets, Time Arrow</div><div class="module-status status-live">● In prototype</div></div></div>
+      <div class="module-item"><span class="module-ico">📊</span><div><div class="module-name">Reports</div><div class="module-desc">30 pre-built reports, Inspection Packs</div><div class="module-status status-spec">○ Spec complete</div></div></div>
+      <div class="module-item"><span class="module-ico">⚙️</span><div><div class="module-name">Settings</div><div class="module-desc">Setup wizard, roles, module config</div><div class="module-status status-live">● In prototype</div></div></div>
+      <div class="module-item"><span class="module-ico">🎓</span><div><div class="module-name">Training</div><div class="module-desc">Course builder, compliance integration</div><div class="module-status status-spec">○ Spec complete</div></div></div>
+      <div class="module-item"><span class="module-ico">📋</span><div><div class="module-name">Policies</div><div class="module-desc">AI policy generator, acknowledgements</div><div class="module-status status-spec">○ Spec complete</div></div></div>
+      <div class="module-item"><span class="module-ico">💷</span><div><div class="module-name">Finance</div><div class="module-desc">Invoicing, payroll, rate sheets</div><div class="module-status status-live">● In prototype</div></div></div>
+    </div>
+    <div style="margin-top:20px;display:flex;gap:16px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--teal);font-weight:600"><span>●</span> In prototype — interactive screens</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--slate)"><span>○</span> Spec complete — full scope doc written and locked</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px">
+    <div class="logo-mark" style="width:26px;height:26px;border-radius:7px">
+      <svg viewBox="0 0 18 18" fill="none" style="width:13px;height:13px">
+        <rect x="1" y="1" width="7" height="7" rx="2" fill="white" opacity=".9"/>
+        <rect x="10" y="1" width="7" height="7" rx="2" fill="white" opacity=".6"/>
+        <rect x="1" y="10" width="7" height="7" rx="2" fill="white" opacity=".6"/>
+        <rect x="10" y="10" width="7" height="7" rx="2" fill="white" opacity=".3"/>
+      </svg>
+    </div>
+    <span style="font-family:'Outfit',sans-serif;font-weight:800;color:#fff;font-size:16px;letter-spacing:-.3px">CareFlow</span>
+  </div>
+  <p>
+    Prototype v1 · For demonstration purposes only · Not for clinical use<br>
+    Built for CQC and CIW regulated UK care providers<br><br>
+    <a href="CareFlow_Login.html">Sign in</a> &nbsp;·&nbsp;
+    <a href="CareFlow_Setup.html">Setup wizard</a> &nbsp;·&nbsp;
+    <a href="CareFlow_Mobile.html">Mobile app</a>
+  </p>
+</footer>
+
+</body>
+</html>
